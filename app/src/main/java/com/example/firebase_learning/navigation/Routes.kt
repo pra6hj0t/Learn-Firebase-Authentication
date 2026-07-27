@@ -6,4 +6,8 @@ object Routes {
     const val LOGIN_SCREEN = "login_screen"
     const val HOME_SCREEN = "home_screen"
 
+    const val CHAT_SCREEN = "chat_screen"
+
+    const val CHAT_SCREEN_WITH_ARG = "chat_screen/{receiverId}"
+
 }

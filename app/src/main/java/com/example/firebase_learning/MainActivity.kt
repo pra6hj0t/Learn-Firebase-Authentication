@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.firebase_learning.navigation.NavigationFile
-import com.example.firebase_learning.presentation.screens.LoginScreen
 import com.example.firebase_learning.presentation.viewmodel.AuthViewModel
+import com.example.firebase_learning.presentation.viewmodel.ChatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +18,8 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val viewModel: AuthViewModel = hiltViewModel()
-            NavigationFile(viewModel)
+            val chatViewModel: ChatViewModel = hiltViewModel()
+            NavigationFile(viewModel,chatViewModel)
         }
     }
 }

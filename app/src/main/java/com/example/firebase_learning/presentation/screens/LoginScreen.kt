@@ -1,5 +1,6 @@
 package com.example.firebase_learning.presentation.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.firebase_learning.navigation.Routes
-import com.example.firebase_learning.presentation.AuthUiState
+import com.example.firebase_learning.presentation.states.AuthUiState
 import com.example.firebase_learning.presentation.viewmodel.AuthViewModel
 
 
@@ -89,7 +90,17 @@ fun LoginScreen(viewModel: AuthViewModel, navController: NavHostController) {
                 Text(text = "Login")
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = "Don't have an account? Register", modifier = Modifier.clickable {
+
+                navController.navigate(Routes.REGISTER_SCREEN) {
+                    popUpTo(Routes.LOGIN_SCREEN) {
+                        inclusive = true
+
+                    }
+                }
+
+            })
 
 
 

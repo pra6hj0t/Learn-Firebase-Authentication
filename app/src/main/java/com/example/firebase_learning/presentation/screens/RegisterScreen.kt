@@ -1,5 +1,6 @@
 package com.example.firebase_learning.presentation.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,13 +26,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.firebase_learning.navigation.Routes
-import com.example.firebase_learning.presentation.AuthUiState
+import com.example.firebase_learning.presentation.states.AuthUiState
 import com.example.firebase_learning.presentation.viewmodel.AuthViewModel
 
 
 @Composable
 fun RegisterScreen(viewModel: AuthViewModel, navController: NavHostController) {
 
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -46,6 +48,16 @@ fun RegisterScreen(viewModel: AuthViewModel, navController: NavHostController) {
         ) {
 
             Text(text = "Register Screen", fontSize = 24.sp)
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text(text = "Name") },
+                placeholder = { Text(text = "Enter Name") },
+                singleLine = true,
+            )
+
             Spacer(modifier = Modifier.height(10.dp))
 
             OutlinedTextField(
@@ -78,18 +90,31 @@ fun RegisterScreen(viewModel: AuthViewModel, navController: NavHostController) {
             Button(
                 onClick = {
 
-                    viewModel.register(email = email, password = password)
+                    viewModel.register(name = name, email = email, password = password)
                     email = ""
                     password = ""
+                    name = ""
 
 
                 },
-                enabled = email.isNotBlank() && password.isNotBlank() && password.length >= 6
+                enabled = name.isNotBlank() && email.isNotBlank() && password.isNotBlank() && password.length >= 6
             ) {
                 Text(text = "Register")
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = "Already have an account? Login", modifier = Modifier.clickable {
+
+                navController.navigate(Routes.LOGIN_SCREEN) {
+                    popUpTo(Routes.REGISTER_SCREEN) {
+                        inclusive = true
+
+                    }
+                }
+
+            })
+
+
 
 
 
