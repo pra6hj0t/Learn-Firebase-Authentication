@@ -1,6 +1,7 @@
 package com.example.firebase_learning.presentation.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.firebase_learning.navigation.Routes
+import com.example.firebase_learning.presentation.states.AuthUiState
 import com.example.firebase_learning.presentation.states.CurrentUserUiState
 import com.example.firebase_learning.presentation.states.UserUiState
 import com.example.firebase_learning.presentation.viewmodel.AuthViewModel
@@ -27,6 +29,19 @@ import com.example.firebase_learning.presentation.viewmodel.AuthViewModel
 @Composable
 fun HomeScreen(viewModel: AuthViewModel, navController: NavHostController) {
 
+
+    LaunchedEffect(viewModel.uiState) {
+
+        if (viewModel.uiState is AuthUiState.LoggedOut) {
+
+            navController.navigate(Routes.LOGIN_SCREEN) {
+                popUpTo(0) {
+                    inclusive = true
+                }
+            }
+
+        }
+    }
     Scaffold() { paddingValues ->
 
         Column(
@@ -67,7 +82,14 @@ fun HomeScreen(viewModel: AuthViewModel, navController: NavHostController) {
                 }
 
                 is UserUiState.Loading -> {
-                    CircularProgressIndicator()
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+
+                        CircularProgressIndicator()
+                    }
                 }
 
                 is UserUiState.Success -> {
@@ -112,11 +134,6 @@ fun HomeScreen(viewModel: AuthViewModel, navController: NavHostController) {
             Spacer(Modifier.height(30.dp))
             Button(onClick = {
                 viewModel.logout()
-                navController.navigate(Routes.LOGIN_SCREEN) {
-                    popUpTo(Routes.HOME_SCREEN) {
-                        inclusive = true
-                    }
-                }
             }) {
                 Text(text = "Logout")
 

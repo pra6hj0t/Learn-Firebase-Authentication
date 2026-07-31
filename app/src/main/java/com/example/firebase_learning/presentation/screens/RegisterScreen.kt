@@ -144,6 +144,9 @@ fun RegisterScreen(viewModel: AuthViewModel, navController: NavHostController) {
                         color = androidx.compose.ui.graphics.Color.Red
                     )
                 }
+                is AuthUiState.LoggedOut -> {
+
+                }
             }
 
         }

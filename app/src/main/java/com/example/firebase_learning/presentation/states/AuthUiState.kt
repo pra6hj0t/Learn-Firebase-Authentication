@@ -8,6 +8,10 @@ sealed class AuthUiState {
 
     object Success : AuthUiState()
 
+    object LoggedOut : AuthUiState()
+
     data class Error(val message: String) : AuthUiState()
+
+
 
 }
