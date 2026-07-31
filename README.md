@@ -1,59 +1,34 @@
-# Firebase Authentication App 🔐
+# Firebase Chat Learning Project
 
-A modern Android application demonstrating Firebase Authentication using **Jetpack Compose**, **MVVM**, **Hilt**, and **Navigation Compose**.
+A modern Android chat application developed to learn real-time application development using Jetpack Compose and Firebase.
 
-## ✨ Features
+## Features
 
-- User Registration
-- User Login
-- Persistent Login Session
-- Auto Login
-- Logout
-- Email Validation
-- Password Validation
-- Clean MVVM Architecture
+- User Registration & Login
+- Firebase Authentication
+- Real-time Chat using Cloud Firestore
+- Send & Receive Messages
+- Read Receipts (Seen Status)
+- Online / Offline Presence
+- Last Seen Timestamp
+- Image Sharing with Cloudinary
+- Profile Information
+- Auto Scroll to Latest Messages
+- MVVM Architecture
 - Dependency Injection using Hilt
+- Material 3 UI with Jetpack Compose
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - Kotlin
 - Jetpack Compose
-- MVVM Architecture
-- Hilt
 - Firebase Authentication
+- Cloud Firestore
+- Hilt
+- Cloudinary
 - Navigation Compose
-- Material 3
+- MVVM Architecture
 
-## 📸 Screenshots
+## Purpose
 
-| Login | Register | Home |
-|-------|----------|------|
-| Add Screenshot | Add Screenshot | Add Screenshot |
-
-## 📂 Project Structure
-
-```
-presentation/
-    screens/
-    viewmodel/
-
-data/
-    repo/
-
-di/
-
-navigation/
-```
-
-## 🚀 Future Improvements
-
-- Firestore Integration
-- User Profile
-- Google Sign-In
-- Forgot Password
-- Email Verification
-- Dark Theme
-
-## 👨‍💻 Author
-
-Prabhjot Singh
+This project was built as a learning project to understand modern Android development concepts before developing a production-ready chat application.
